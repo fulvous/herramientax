@@ -40,6 +40,10 @@ function echon {
   echo "${*}" | tr -d '\n'
 }
 
+function debug {
+  [ ${VERBOSE} ] && echo "${*}"
+}
+
 function mover_final {
   COLS=$( tput cols )
   COL_RES=$(( COLS - 10 ))
