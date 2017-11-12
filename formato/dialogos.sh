@@ -35,8 +35,15 @@
 #along with herramientax  If not, see 
 #<http://www.gnu.org/licenses/>.
 
+
 function echon {
   echo "${*}" | tr -d '\n'
+}
+
+function mover_final {
+  COLS=$( tput cols )
+  COL_RES=$(( COLS - 10 ))
+  echo -e "\\033[${COL_RES}G"
 }
 
 function informa {
@@ -61,40 +68,32 @@ function informa {
   echo "${BLANCO}--${RESET}"
 }
 
-function informa_ok {
-  NUMBER=1
-  for ARG in "$@" ; do
-    case $NUMBER in
-      1)
-        echon ${NEGRITA}${ARG}": "
-      ;;
-      2)
-        echon ${AMARILLO}${ARG}" "
-      ;;
-      *)
-        echon "${BLANCO}[ ${VERDE}${ARG} "
-      ;;
-    esac
-    NUMBER=$(( NUMBER + 1 ))
-  done
+function res_ok {
+  echon "${BLANCO}[ ${VERDE}${3} "
+  echon "${BLANCO}] "
+  echon "${NEGRITA}${1}: "
+  echo "${AMARILLO}${2}${RESET}"
+}
+
+function res_err {
+  echon "${BLANCO}[ ${ROJO}${3} "
+  echon "${BLANCO}] "
+  echon "${NEGRITA}${1}: "
+  echo "${AMARILLO}${2}${RESET}"
+}
+
+function res_ok_final {
+  echon "${NEGRITA}${1}: "
+  echon "${AMARILLO}${2} "
+  mover_final
+  echon "${BLANCO}[ ${VERDE}${3} "
   echo "${BLANCO}]${RESET}"
 }
 
-function informa_err {
-  NUMBER=1
-  for ARG in "$@" ; do
-    case $NUMBER in
-      1)
-        echon ${NEGRITA}${ARG}": "
-      ;;
-      2)
-        echon ${AMARILLO}${ARG}" "
-      ;;
-      *)
-        echon "${BLANCO}[ ${ROJO}${ARG} "
-      ;;
-    esac
-    NUMBER=$(( NUMBER + 1 ))
-  done
+function res_err_final {
+  echon ${NEGRITA}${1}": "
+  echon ${AMARILLO}${2}" "
+  mover_final
+  echon "${BLANCO}[ ${ROJO}${3} "
   echo "${BLANCO}]${RESET}"
 }

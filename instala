@@ -59,10 +59,9 @@ chmod 755 herramientax
 
 informa_ok "Permisos agregados" "ejecucion" "Exitoso"
 
-cat <<EOT 
-Biblioteca herramientax lista,
-puedes importarla desde cualquier
-ubicacion asi:
+cat <<EOT | fmt -
+
+Biblioteca herramientax lista, puedes importarla desde cualquier ubicacion asi:
 
 source ruta/herramientax/herramientax
 
