@@ -53,11 +53,11 @@ for folder in $( find ${PWD_F} -type d 2>/dev/null | egrep -v '\.git' ) ; do
   done
 done
 
-informa_ok "Importador creado" "herramientax" "Exitoso"
+res_ok "Importador creado" "herramientax" "Exitoso"
 
 chmod 755 herramientax
 
-informa_ok "Permisos agregados" "ejecucion" "Exitoso"
+res_ok "Permisos agregados" "ejecucion" "Exitoso"
 
 cat <<EOT | fmt -
 
