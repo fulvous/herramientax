@@ -97,3 +97,27 @@ function res_err_final {
   echon "${BLANCO}[ ${ROJO}${3} "
   echo "${BLANCO}]${RESET}"
 }
+
+function division {
+  #Linea divisoria
+  echo
+  COLS=$( tput cols )
+  echon ${AMARILLO}
+  for i in $( seq 1 $COLS ) ; do
+    echon "-"
+  done 
+  echo ${RESET}
+  echo
+}
+
+function jumbotron {
+  division
+  echo "  ${NEGRITAS}${AMARILLO}${1}${RESET}" | fmt -
+  echo
+  shift
+  for ARG in "$@" ; do
+    echo "  ${ARG}" | fmt -
+    echo 
+  done
+  division
+}
