@@ -41,7 +41,7 @@ function echon {
 }
 
 function debug {
-  [ ${VERBOSE} ] && echo "${NEGRITAS}${CYAN}${*}${RESET}"
+  [ "${VERBOSE}" == "1" ] && echo "${NEGRITAS}${CYAN}${*}${RESET}"
 }
 
 function mover_final {
