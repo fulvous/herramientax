@@ -1,0 +1,4 @@
+#!/bin/bash
+source ./formatear/colores.sh
+source ./formatear/dialogos.sh
+source ./sistema/usuario.sh
