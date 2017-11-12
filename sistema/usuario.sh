@@ -43,7 +43,7 @@ function usuario {
 function es_root {
   USUARIO=$(whoami)
   if [ "$USUARIO" != "root" ] ; then
-    informar_err "Debe de ejecutar $0" "con root" "ERROR"
+    informar_err "Debe de ejecutar $0 con" "root" "ERROR"
     exit 1
   fi
   echon "1"
