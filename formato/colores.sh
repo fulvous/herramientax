@@ -43,6 +43,6 @@ AMARILLO=`tput setaf 3`
 AZUL=`tput setaf 4`  
 MAGENTA=`tput setaf 5`  
 CYAN=`tput setaf 6`  
-NARANJA=`tput setaf 202`  
+NARANJA=`tput setaf 9`  
 BLANCO=`tput setaf 7`  
 RESET=`tput sgr0`
