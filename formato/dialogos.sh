@@ -35,16 +35,66 @@
 #along with herramientax  If not, see 
 #<http://www.gnu.org/licenses/>.
 
-function usuario {
-  USUARIO=$(whoami)
-  echon ${USUARIO}
+function echon {
+  echo "${*}" | tr -d '\n'
 }
 
-function es_root {
-  USUARIO=$(whoami)
-  if [ "$USUARIO" != "root" ] ; then
-    informar_err "Debe de ejecutar $0 con" "root" "ERROR"
-    exit 1
-  fi
-  echon "1"
+function informa {
+  NUMBER=1
+  for ARG in "$@" ; do
+    case $NUMBER in
+      1)
+        echon ${NEGRITA}${ARG}": "
+      ;;
+      2)
+        echon ${AMARILLO}${ARG}" "
+      ;;
+      3)
+        echon "${BLANCO}-- ${CYAN}${ARG} "
+      ;;
+      *)
+        echon ${ARG}" "
+      ;;
+    esac
+    NUMBER=$(( NUMBER + 1 ))
+  done
+  echo "${BLANCO}--${RESET}"
+}
+
+function informa_ok {
+  NUMBER=1
+  for ARG in "$@" ; do
+    case $NUMBER in
+      1)
+        echon ${NEGRITA}${ARG}": "
+      ;;
+      2)
+        echon ${AMARILLO}${ARG}" "
+      ;;
+      *)
+        echon "${BLANCO}[ ${VERDE}${ARG} "
+      ;;
+    esac
+    NUMBER=$(( NUMBER + 1 ))
+  done
+  echo "${BLANCO}]${RESET}"
+}
+
+function informa_err {
+  NUMBER=1
+  for ARG in "$@" ; do
+    case $NUMBER in
+      1)
+        echon ${NEGRITA}${ARG}": "
+      ;;
+      2)
+        echon ${AMARILLO}${ARG}" "
+      ;;
+      *)
+        echon "${BLANCO}[ ${ROJO}${ARG} "
+      ;;
+    esac
+    NUMBER=$(( NUMBER + 1 ))
+  done
+  echo "${BLANCO}]${RESET}"
 }

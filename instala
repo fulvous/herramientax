@@ -35,16 +35,35 @@
 #along with herramientax  If not, see 
 #<http://www.gnu.org/licenses/>.
 
-function usuario {
-  USUARIO=$(whoami)
-  echon ${USUARIO}
-}
+set -e
 
-function es_root {
-  USUARIO=$(whoami)
-  if [ "$USUARIO" != "root" ] ; then
-    informar_err "Debe de ejecutar $0 con" "root" "ERROR"
-    exit 1
-  fi
-  echon "1"
-}
+source formato/colores.sh
+source formato/dialogos.sh
+
+informa "Creando biblioteca" "herramientax" "espere..."
+
+PWD_F=$( pwd )
+
+echo "#!/bin/bash" > herramientax
+
+for folder in $( find ${PWD_F} -type d 2>/dev/null | egrep -v '\.git' ) ; do
+  for archivo in $( ls ${folder} | egrep -v 'test.sh' | egrep '\.sh$' ) ; do
+    echo "source ${folder}/${archivo}"
+    echo "source ${folder}/${archivo}" >> herramientax
+  done
+done
+
+informa_ok "Importador creado" "herramientax" "Exitoso"
+
+chmod 755 herramientax
+
+informa_ok "Permisos agregados" "ejecucion" "Exitoso"
+
+cat <<EOT 
+Biblioteca herramientax lista,
+puedes importarla desde cualquier
+ubicacion asi:
+
+source ruta/herramientax/herramientax
+
+EOT
